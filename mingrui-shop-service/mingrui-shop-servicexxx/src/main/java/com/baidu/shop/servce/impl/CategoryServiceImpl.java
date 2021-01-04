@@ -1,5 +1,7 @@
 package com.baidu.shop.servce.impl;
 
+import com.baidu.shop.entity.CategoryBrandEntity;
+import com.baidu.shop.mapper.CategoryBrandMapper;
 import com.baidu.shop.mapper.CategoryMapper;
 import com.baidu.shop.base.BaseApiService;
 import com.baidu.shop.base.Result;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import tk.mybatis.mapper.entity.Example;
 
+import javax.annotation.Resource;
 import java.util.List;
 /**
  * 2 *@ClassName CategoryServiceImpl
@@ -28,6 +31,10 @@ public class CategoryServiceImpl extends BaseApiService implements CategoryServi
 
     @Autowired
     private CategoryMapper categoryMapper;
+
+    @Resource
+    private CategoryBrandMapper categoryBrandMapper;
+
     @Transactional
     @Override
     public Result<JsonObject> addCategory(@RequestBody CategoryEntity entity) {
@@ -75,13 +82,11 @@ public class CategoryServiceImpl extends BaseApiService implements CategoryServi
             return this.setResultError("當前節點為父節點，不能刪除");
         }
 
-//        if(){
-//
-//        }
-//        Example example = new Example(CategoryEntity.class);
-//        Example.Criteria criteria = example.createCriteria();
-//        criteria.andEqualTo("sparceId",categoryEntity.getParentId());
-//        List<CategoryEntity> list = categoryMapper.selectByExample(example);
+
+        Example example1 = new Example(CategoryEntity.class);
+        example1.createCriteria().andEqualTo("categoryId",id);
+        List<CategoryBrandEntity> categoryBrandEntities = categoryBrandMapper.selectByExample(example1);
+        if(categoryBrandEntities.size() >=1) return this.setResultError("id被绑定不能删除");
 
 
         //構建條件查詢 ，通過當前被刪除節點的parentid查詢數據
@@ -90,6 +95,8 @@ public class CategoryServiceImpl extends BaseApiService implements CategoryServi
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("parentId",categoryEntity.getParentId());
         List<CategoryEntity> list = categoryMapper.selectByExample(example);
+
+
 
 
 
