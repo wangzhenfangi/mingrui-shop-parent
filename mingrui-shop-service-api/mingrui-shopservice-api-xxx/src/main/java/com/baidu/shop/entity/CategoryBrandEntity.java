@@ -15,6 +15,7 @@ import javax.persistence.Table;
  * @Version V1.0
  * 7
  **/
+
 @Data
 @Table(name = "tb_category_brand")
 @NoArgsConstructor
@@ -26,3 +27,6 @@ public class CategoryBrandEntity {
     private Integer brandId;
 
 }
+
+
+
