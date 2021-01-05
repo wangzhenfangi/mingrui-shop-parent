@@ -94,6 +94,11 @@ public class SpecificationServiceImpl extends BaseApiService implements Specific
     @Transactional
     @Override
     public Result<JSONObject> delParam(Integer id) {
+        Example example = new Example(SpecParamEntity.class);
+        example.createCriteria().andEqualTo("groupId",id);
+        List<SpecParamEntity> specParamEntities = specParamMapper.selectByExample(example);
+        if (specParamEntities.size()>=1) return  this.setResultError("不能删除");
+
         specParamMapper.deleteByPrimaryKey(id);
         return this.setResultSuccess();
     }
