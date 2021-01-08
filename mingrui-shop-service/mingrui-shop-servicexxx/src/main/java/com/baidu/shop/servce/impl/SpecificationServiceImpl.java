@@ -66,16 +66,31 @@ public class SpecificationServiceImpl extends BaseApiService implements Specific
         return this.setResultSuccess();
     }
 //--------------------------------------------------------------------------------------------
+//规格参数
     @Resource
     private SpecParamMapper specParamMapper;
 
     @Override
     public Result<List<SpecParamEntity>> getSpecParamInfo(SpecParamDTO specParamDTO) {
+        SpecParamEntity specParamEntity = BaiduBeanUtil.copyProperties(specParamDTO, SpecParamEntity.class);
         Example example = new Example(SpecParamEntity.class);
-        example.createCriteria().andEqualTo("groupId",specParamDTO.getGroupId());
+        Example.Criteria criteria = example.createCriteria();
+
+        if(ObjectUtil.isNotNull(specParamDTO.getGroupId())){
+            criteria.andEqualTo("groupId",specParamDTO.getGroupId());
+        }
+        if(ObjectUtil.isNotNull(specParamDTO.getCid())){
+            criteria.andEqualTo("cid",specParamDTO.getCid());
+        }
+        
         List<SpecParamEntity> list = specParamMapper.selectByExample(example);
+
         return this.setResultSuccess(list);
+
     }
+
+
+
 
     @Transactional
     @Override

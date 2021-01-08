@@ -166,6 +166,12 @@ public class BrandServiceImpl extends BaseApiService implements BrandService {
 
     }
 
+    @Override
+    public Result<List<BrandEntity>> getBrandInfoByCategoryId(Integer cid) {
+        List<BrandEntity> list = brandMapper.getBrandInfoByCategoryId(cid);
+        return this.setResultSuccess(list);
+    }
+
 
     private void deleteCategoryBrandByBrandId(Integer brandId){
 
@@ -211,3 +217,6 @@ public class BrandServiceImpl extends BaseApiService implements BrandService {
 
 
 }
+
+
+

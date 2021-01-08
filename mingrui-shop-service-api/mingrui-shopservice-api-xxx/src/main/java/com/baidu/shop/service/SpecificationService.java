@@ -41,12 +41,10 @@ public interface SpecificationService {
 
     @ApiOperation(value = "新增规格参数")
     @PostMapping(value = "specparam/save")
-    Result<JSONObject> addParam(@Validated({MingruiOperation.Add.class})
-                                @RequestBody SpecParamDTO specParamDTO);
+    Result<JSONObject> addParam(@Validated({MingruiOperation.Add.class}) @RequestBody SpecParamDTO specParamDTO);
     @ApiOperation(value = "修改规格参数")
     @PutMapping(value = "specparam/save")
-    Result<JSONObject> editParam(@Validated({MingruiOperation.Update.class})
-                                 @RequestBody SpecParamDTO specParamDTO);
+    Result<JSONObject> editParam(@Validated({MingruiOperation.Update.class}) @RequestBody SpecParamDTO specParamDTO);
     @ApiOperation(value = "删除规格参数")
     @DeleteMapping(value = "specparam/del")
     Result<JSONObject> delParam(Integer id);

@@ -30,11 +30,10 @@ public class CategoryEntity {
     private Integer Id;  //如果没有@Column 默认使用entity的属性名和 数据库表的字段名做映射
 
     @ApiModelProperty(value = "分类名称")
-    @NotEmpty(message = "分類名稱不能爲空",groups = {MingruiOperation.Add.class,MingruiOperation.Add.class})
+    @NotEmpty(message = "分類名稱不能爲空",groups = {MingruiOperation.Update.class,MingruiOperation.Add.class})
     private String name;
 
     @ApiModelProperty(value = "父级分类",example = "1")
-
     @NotNull(message = "父級分類不能爲空",groups = {MingruiOperation.Add.class})
     private Integer parentId;
 
