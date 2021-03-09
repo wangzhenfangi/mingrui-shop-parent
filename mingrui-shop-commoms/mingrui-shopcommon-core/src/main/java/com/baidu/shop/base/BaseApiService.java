@@ -25,7 +25,6 @@ public class BaseApiService<T> {
 
     // 返回错误，可以传msg
     public Result<T> setResultError(String msg) {
-
         return setResult(HTTPStatus.ERROR, msg, null);
     }
 

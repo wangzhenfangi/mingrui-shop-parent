@@ -15,6 +15,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>mingrui-shop-servicexxx</module>
+        <module>目mingrui-shop-service-search</module>
+        <module>mingrui-shop-service-search</module>
+        <module>mingrui-shop-service-template</module>
     </modules>
 
 

@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
+
 /**
  * 2 *@ClassName RunEurekaServerApplication
  * 3 *@Description: TODO
@@ -16,7 +17,7 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 @SpringBootApplication
 @EnableEurekaServer
 public class RunEurekaServerApplication {
-    public static void main(String[] args) {
+    public static void main(String[] args){
         SpringApplication.run(RunEurekaServerApplication.class);
     }
 

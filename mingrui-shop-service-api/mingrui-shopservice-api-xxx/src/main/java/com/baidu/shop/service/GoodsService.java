@@ -11,6 +11,7 @@ import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.models.auth.In;
+import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +31,7 @@ public interface GoodsService {
 
     @ApiOperation(value = "获取spu信息")
     @GetMapping(value = "goods/getSpuInfo")
-    public Result<List<SpuDTO>> getSpuInfo(SpuDTO spuDTO);
+    public Result<List<SpuDTO>> getSpuInfo(@SpringQueryMap SpuDTO spuDTO);
 
 
     @ApiOperation(value = "新增商品")
@@ -51,17 +52,11 @@ public interface GoodsService {
 
     @ApiOperation(value = "通过spuid查询spuDetail信息")
     @GetMapping(value = "/goods/getSpuDetailBySpuId")
-    Result<SpuDetailEntity> getSpuDetailBySpuId(Integer spuId);
+    Result<SpuDetailEntity> getSpuDetailBySpuId(@RequestParam Integer spuId);
 
     @ApiOperation(value = "通过spuId查询skus的信息")
     @GetMapping(value = "/goods/getSkusBySpuId")
-    Result<SkuDTO> getSkusBySpuId(Integer spuId);
-
-
-
-
-
-
+    Result<List<SkuDTO>> getSkusBySpuId(@RequestParam Integer spuId);
 
 
 }

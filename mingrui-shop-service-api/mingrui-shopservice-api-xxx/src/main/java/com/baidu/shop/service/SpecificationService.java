@@ -11,6 +11,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Delete;
+import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ public interface SpecificationService {
 
     @ApiOperation(value = "通过条件查询规格组")
     @GetMapping(value = "specgroup/getSpecGroupInfo")
-    Result<List<SpecGroupEntity>> getSepcGroupInfo(SpecGroupDTO specGroupDTO);
+    Result<List<SpecGroupEntity>> getSepcGroupInfo(@SpringQueryMap SpecGroupDTO specGroupDTO);
 
     @ApiOperation(value = "新增规格组")
     @PostMapping("specgroup/save")
@@ -37,7 +38,7 @@ public interface SpecificationService {
 
     @ApiOperation(value = "查询规格参数")
     @GetMapping(value = "specparam/getSpecParamInfo")
-    public Result<List<SpecParamEntity>> getSpecParamInfo(SpecParamDTO specParamDTO);
+    public Result<List<SpecParamEntity>> getSpecParamInfo(@SpringQueryMap SpecParamDTO specParamDTO);
 
     @ApiOperation(value = "新增规格参数")
     @PostMapping(value = "specparam/save")

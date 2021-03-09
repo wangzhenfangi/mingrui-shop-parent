@@ -82,7 +82,7 @@ public class GoodsServiceImpl extends BaseApiService implements GoodsService {
     }
 
     @Override
-    public Result<SkuDTO> getSkusBySpuId(Integer spuId) {
+    public Result<List<SkuDTO>> getSkusBySpuId(Integer spuId) {
         List<SkuDTO> skusAndStockBySpuId = skuMapper.getSkusAndStockBySpuId(spuId);
         return this.setResultSuccess(skusAndStockBySpuId);
     }
@@ -106,8 +106,11 @@ public class GoodsServiceImpl extends BaseApiService implements GoodsService {
             criteria.andEqualTo("saleable",spuDTO.getSaleable());
         }
         //模糊查询
-        if(!StringUtils.isEmpty(spuDTO.getTitle())) criteria.andLike("title","%" + spuDTO.getTitle() + "%");
+        if(!StringUtils.isEmpty(spuDTO.getTitle()))
+            criteria.andLike("title","%" + spuDTO.getTitle() + "%");
 
+        if(ObjectUtil.isNotNull(spuDTO.getId()))
+            criteria.andEqualTo("id",spuDTO.getId());
         List<SpuEntity> spuEntities = spuMapper.selectByExample(example);
 
         List<SpuDTO> spuDTOList = spuEntities.stream().map(spuEntity ->{

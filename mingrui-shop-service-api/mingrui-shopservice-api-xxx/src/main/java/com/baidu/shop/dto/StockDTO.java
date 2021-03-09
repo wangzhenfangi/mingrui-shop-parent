@@ -35,8 +35,5 @@ public class StockDTO {
     @NotNull(message = "库存不能为空",groups = {MingruiOperation.Update.class,MingruiOperation.Add.class})
     private Integer stock;
 
-
-
-
-
 }
+

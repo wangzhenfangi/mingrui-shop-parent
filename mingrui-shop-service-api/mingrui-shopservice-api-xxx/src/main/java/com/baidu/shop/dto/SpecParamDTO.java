@@ -1,6 +1,7 @@
 package com.baidu.shop.dto;
 
 import com.baidu.shop.base.BaseDTO;
+import com.baidu.shop.entity.SpecParamEntity;
 import com.baidu.shop.validate.group.MingruiOperation;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -8,6 +9,7 @@ import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * 2 *@ClassName SpecParamDTO
@@ -55,5 +57,7 @@ public class SpecParamDTO extends BaseDTO {
 
     @ApiModelProperty(value = "数值类型参数，如果需要搜索，则添加分段间隔值，如CPU频率间 隔：0.5-1.0")
     private String segments;
+
+
 
 }

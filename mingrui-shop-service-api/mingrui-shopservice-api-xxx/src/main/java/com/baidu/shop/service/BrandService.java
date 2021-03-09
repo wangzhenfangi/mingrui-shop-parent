@@ -11,6 +11,7 @@ import io.swagger.annotations.Api;
 
 
 import io.swagger.annotations.ApiOperation;
+import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ public interface BrandService {
 
     @ApiOperation(value="查詢品牌列表")
     @GetMapping(value = "brand/list")
-    Result<PageInfo<BrandEntity>> getBrandInfo(BrandDTO brandDTO);
+    Result<PageInfo<BrandEntity>> getBrandInfo(@SpringQueryMap BrandDTO brandDTO);
 
     @ApiOperation(value="通过分类id查询品牌")
     @GetMapping(value = "brand/getBrandInfoByCategoryId")
@@ -41,6 +42,13 @@ public interface BrandService {
     @ApiOperation(value = "删除品牌")
     Result<JSONObject> deleteBrandInfo(Integer id);
 
+//    @ApiOperation(value="通过品牌id集合获取品牌")
+//    @GetMapping(value = "brand/getBrandByIds")
+//    Result<List<BrandEntity>> getBrandByIds(@RequestParam String brandIds);
+
+    @GetMapping(value = "brand/getBrandByIdList")
+    @ApiOperation(value = "查询通过id集合品牌列表")
+    Result<List<BrandEntity>> getBrandByIdList(@RequestParam String ids);
 
 
 
